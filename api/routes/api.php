@@ -26,8 +26,7 @@ Route::group(['prefix' => 'menu-categories'], function () {
 });
 
 Route::group(['prefix' => 'stock'], function () {
-    Route::put('/{id}/update-units', [StockController::class, 'updateUnits']);
-    Route::put('/{id}/update-cost', [StockController::class, 'updateCost']);
+    Route::put('/{id}/update-quantities', [StockController::class, 'updateQuantities']);
 });
 
 Route::group(['prefix' => 'supplies'], function () {
