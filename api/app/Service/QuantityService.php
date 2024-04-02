@@ -15,7 +15,7 @@ class QuantityService
         //
     }
 
-    public function updateUnits(Collection $validated, int $currentUnits) : int
+    public function updateUnits(Collection $validated, int $currentUnits) : int | Exception
     {
         $units = 0;
         $type = $validated->get('type');
@@ -25,6 +25,7 @@ class QuantityService
             if ($currentUnits < $validated->get('units')) {
                 throw new Exception("Units available are too few");
             }
+            
             $units = $currentUnits - $validated->get('units');
         }
 

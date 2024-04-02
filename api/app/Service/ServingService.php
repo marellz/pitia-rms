@@ -67,8 +67,7 @@ class ServingService
         $valid =  $request->safe()->collect();
         // todo: export to another service
         if ($valid->has('type') && $valid->has('units')) {
-           $units = $this->quantityService->updateUnits($valid, $serving->units);
-           $update['units'] = $units;
+           $update['units'] = $this->quantityService->updateUnits($valid, $serving->units);
         }
 
         $updated = $serving->update($update);

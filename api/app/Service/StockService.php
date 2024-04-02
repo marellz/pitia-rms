@@ -7,7 +7,6 @@ use App\Http\Requests\Stock\UpdateStockRequest;
 use App\Http\Requests\Supplies\UpdateStockQuantitiesRequest;
 use App\Http\Resources\StockResource;
 use App\Models\Stock\Stock;
-use Exception;
 use Illuminate\Http\Request;
 
 class StockService
@@ -15,7 +14,9 @@ class StockService
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(
+        private readonly QuantityService $quantityService
+    )
     {
         //
     }
@@ -62,31 +63,14 @@ class StockService
         return new StockResource($stock);
     }
 
-    /**
-     * 
-     * Additional actions?
-     * 
-     */
-
-    public function updateQuantities(string $id, UpdateStockQuantitiesRequest $request): Exception | bool
+    public function updateQuantities(string $id, UpdateStockQuantitiesRequest $request) : bool
     {
         $stock = $this->get($id);
-        $type = $request->get('type');
-        $units = 0;
         $update = [];
         $valid = $request->safe()->collect();
+        
         if ($valid->has('type') && $valid->has('units')) {
-            if ($type === 'addition') {
-                $units = $valid->get('units') + $stock->units;
-            } else if ($type === 'deduction') {
-                if ($stock->units < $valid->get('units')) {
-                    throw new Exception("Units available are too few");
-                }
-
-                $units = $stock->units - $valid->get('units');
-            }
-
-            $update['units'] = $units;
+            $update['units'] = $this->quantityService->updateUnits($valid, $stock->units);
         }
 
         if($valid->has('cost_per_unit')){

@@ -7,14 +7,15 @@ use App\Http\Requests\Supplies\UpdateSuppliesQuantitiesRequest;
 use App\Http\Requests\Supplies\UpdateSuppliesRequest;
 use App\Http\Resources\SuppliesResource;
 use App\Models\Stock\Supplies;
-use Exception;
 
 class SuppliesService
 {
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    public function __construct(
+        private readonly QuantityService $quantityService
+    )
     {
         //
     }
@@ -41,14 +42,15 @@ class SuppliesService
             "servings_per_unit",
             "cost_per_unit",
         ]));
-
+        
         return new SuppliesResource($item);
     }
-
+    
     public function update(string $id, UpdateSuppliesRequest $request)
     {
         $item = $this->get($id);
         $updated = $item->update($request->safe()->only([
+            // todo: implement DTO
             "name",
             "description",
         ]));
@@ -62,21 +64,7 @@ class SuppliesService
         $update = [];
         $valid = $request->safe()->collect();
         if ($valid->has('units') && $request->has('type')) {
-            $units = 0;
-            $type = $valid->get('type');
-            $diff = $valid->get('units');
-            if ($type === 'addition') {
-                $units = $item->units + $diff;
-            } else if ($type === 'deduction') {
-                if ($item->units < $diff) {
-                    throw new Exception("Units available are too few");
-                }
-
-                $units = $item->units - $diff;
-            }
-
-            $update['units'] = $units;
-            
+            $update['units'] = $this->quantityService->updateUnits($valid, $item->units);
         }
         
         if ($valid->has('servings_per_unit')) {
