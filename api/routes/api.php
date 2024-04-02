@@ -3,6 +3,7 @@
 use App\Http\Controllers\MenuItemCategoryController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\SuppliesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::resources([
     'menu' => MenuItemController::class,
     'stock' => StockController::class,
+    'supplies' => SuppliesController::class,
 ]);
 
 Route::group(['prefix' => 'menu-categories'], function () {
@@ -24,5 +26,8 @@ Route::group(['prefix' => 'menu-categories'], function () {
 Route::group(['prefix' => 'stock'], function () {
     Route::put('/{id}/update-units', [StockController::class, 'updateUnits']);
     Route::put('/{id}/update-cost', [StockController::class, 'updateCost']);
-    
+});
+
+Route::group(['prefix' => 'supplies'], function () {
+    Route::put('/{id}/update-quantities', [SuppliesController::class, 'updateQuantities']);
 });
