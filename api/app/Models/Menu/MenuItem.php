@@ -19,4 +19,14 @@ class MenuItem extends Model
         'price', // todo: protect
         'sale_price', // todo: protect
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(MenuItemCategory::class, 'menu_item_category_id');
+    }
+
+    public function servings ()
+    {
+        return $this->hasMany(Serving::class);
+    }
 }
