@@ -44,7 +44,7 @@ class ServingSeeder extends Seeder
             [
                 'name' => 'Cabbage',
                 'units' => 10,
-                'supply_id' => 6,
+                'supplies_id' => 6,
             ],
             [
                 'name' => 'Soda',
@@ -54,25 +54,25 @@ class ServingSeeder extends Seeder
             ],
             [
                 'name' => 'Tea',
-                'supply_id' => 2,
+                'supplies_id' => 2,
                 'units' => 4,
                 'unit_type' => 'cups'
             ],
             [
                 'name' => 'Coffee',
                 'units' => 10,
-                'supply_id' => 1,
+                'supplies_id' => 1,
                 'unit_type' => 'cups'
             ],
             [
                 'name'=> 'Salad',
-                'supply_id' => 2,
+                'supplies_id' => 2,
                 'units' => 10,
                 /**
                  * todo: polymorphic table for values with multiple
-                 * supply_id/stock_id
+                 * supplies_id/stock_id
                  * */  
-                // 'stock_id/supply_id' => null , 
+                // 'stock_id/supplies_id' => null , 
             ],
         ];
 
