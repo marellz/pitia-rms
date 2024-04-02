@@ -13,9 +13,10 @@ class Serving extends Model
     protected $fillable = [
         "name",
         "stock_id",
-        "supply_id",
+        "supplies_id",
         "description",
         "units", // todo: protect
         "unit_type", 
     ];
 }
+ 

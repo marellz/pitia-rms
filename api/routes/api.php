@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MenuItemCategoryController;
 use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\ServingController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SuppliesController;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ Route::resources([
     'menu' => MenuItemController::class,
     'stock' => StockController::class,
     'supplies' => SuppliesController::class,
+    'servings' => ServingController::class,
 ]);
 
 Route::group(['prefix' => 'menu-categories'], function () {
@@ -30,4 +32,8 @@ Route::group(['prefix' => 'stock'], function () {
 
 Route::group(['prefix' => 'supplies'], function () {
     Route::put('/{id}/update-quantities', [SuppliesController::class, 'updateQuantities']);
+});
+
+Route::group(['prefix' => 'servings'], function () {
+    Route::put('/{id}/update-quantities', [ServingController::class, 'updateQuantities']);
 });
