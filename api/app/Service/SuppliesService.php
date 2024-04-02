@@ -79,11 +79,11 @@ class SuppliesService
             
         }
         
-        if ($request->get('servings_per_unit')) {
+        if ($valid->has('servings_per_unit')) {
             $update['servings_per_unit'] = $valid->get('servings_per_unit');
         }
 
-        if ($request->get('cost_per_unit')) {
+        if ($valid->has('cost_per_unit')) {
             $update['cost_per_unit'] = $valid->get('cost_per_unit');
         }
 

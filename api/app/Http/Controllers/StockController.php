@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Stock\StoreStockRequest;
 use App\Http\Requests\Stock\UpdateStockRequest;
-use App\Http\Requests\Stock\UpdateStockCostRequest;
-use App\Http\Requests\Stock\UpdateStockUnitsRequest;
+use App\Http\Requests\Supplies\UpdateStockQuantitiesRequest;
 use App\Models\Stock\Stock;
 use App\Service\StockService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -21,7 +21,7 @@ class StockController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         //
         $data['items'] = $this->service->all($request);
@@ -39,7 +39,7 @@ class StockController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStockRequest $request)
+    public function store(StoreStockRequest $request): JsonResponse
     {
         //
         $data['stock'] = $this->service->store($request);
@@ -49,7 +49,7 @@ class StockController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         //
         $data['item'] = $this->service->get($id);
@@ -67,29 +67,23 @@ class StockController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStockRequest $request, string $id)
+    public function update(UpdateStockRequest $request, string $id): JsonResponse
     {
         //
         $data['item'] = $this->service->update($id, $request);
         return $this->respond($data);
     }
 
-    public function updateCost(UpdateStockCostRequest $request, string $id)
+    public function updateQuantities(UpdateStockQuantitiesRequest $request, string $id): JsonResponse
     {
-        $data['updated'] = $this->service->updateCost($id, $request);
-        return $this->respond($data);
-    }
-
-    public function updateUnits(UpdateStockUnitsRequest $request, string $id)
-    {
-        $data['updated'] = $this->service->updateUnits($id, $request);
+        $data['updated'] = $this->service->updateQuantities($id, $request);
         return $this->respond($data);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
         //
         $data['deleted'] = $this->service->delete($id);

@@ -3,9 +3,8 @@
 namespace App\Service;
 
 use App\Http\Requests\Stock\StoreStockRequest;
-use App\Http\Requests\Stock\UpdateStockCostRequest;
 use App\Http\Requests\Stock\UpdateStockRequest;
-use App\Http\Requests\Stock\UpdateStockUnitsRequest;
+use App\Http\Requests\Supplies\UpdateStockQuantitiesRequest;
 use App\Http\Resources\StockResource;
 use App\Models\Stock\Stock;
 use Exception;
@@ -69,37 +68,36 @@ class StockService
      * 
      */
 
-    public function updateUnits(string $id, UpdateStockUnitsRequest $request): Exception | bool
+    public function updateQuantities(string $id, UpdateStockQuantitiesRequest $request): Exception | bool
     {
         $stock = $this->get($id);
         $type = $request->get('type');
         $units = 0;
-        if ($type === 'addition') {
-            $units = $request->get('units') + $stock->units;
-        } else if ($type === 'deduction') {
-            if($stock->units < $request->get('units')){
-                throw new Exception("Units available are too few");
+        $update = [];
+        $valid = $request->safe()->collect();
+        if ($valid->has('type') && $valid->has('units')) {
+            if ($type === 'addition') {
+                $units = $valid->get('units') + $stock->units;
+            } else if ($type === 'deduction') {
+                if ($stock->units < $valid->get('units')) {
+                    throw new Exception("Units available are too few");
+                }
+
+                $units = $stock->units - $valid->get('units');
             }
 
-            $units = $stock->units - $request->get('units');
-
-        } else {
-            throw new Exception("Type not valid");
+            $update['units'] = $units;
         }
 
-        $updated = $stock->update([
-            'units' => $units
-        ]);
+        if($valid->has('cost_per_unit')){
+            $update['cost_per_unit'] = $valid->get('cost_per_unit');
+        }
 
-        return $updated;
-    }
+        if($valid->has('servings_per_unit')){
+            $update['servings_per_unit'] = $valid->get('servings_per_unit');
+        }
 
-    public function updateCost(string $id, UpdateStockCostRequest $request)
-    {
-        $stock = $this->get($id);
-        $updated = $stock->update([
-            'cost_per_unit' => $request->get('cost_per_unit'),
-        ]);
+        $updated = $stock->update($update);
 
         return $updated;
     }
