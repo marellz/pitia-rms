@@ -37,7 +37,7 @@ class MenuItemController extends Controller
     public function create()
     {
         //
-        $data = $this->servingsService->all();
+        $data['servings'] = $this->servingsService->all();
         $this->respond($data);
     }
 
@@ -47,7 +47,7 @@ class MenuItemController extends Controller
     public function store(StoreMenuItemRequest $request)
     {
         //
-        $data = $this->service->store($request);
+        $data['item'] = $this->service->store($request);
         return $this->respond($data);
     }
 
