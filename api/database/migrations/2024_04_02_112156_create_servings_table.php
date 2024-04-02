@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id');
             $table->string('name')->unique();
             $table->foreignUuid('stock_id')->nullable();
-            $table->foreignUuid('supply_id')->nullable(); // todo: polymorphic table
+            $table->foreignUuid('supplies_id')->nullable(); // todo: polymorphic table
             $table->text('description')->nullable();
             $table->integer('units')->default(0);
             $table->string('unit_type')->default('plate'); //plate | cup
