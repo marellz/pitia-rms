@@ -23,7 +23,7 @@ class StoreServingRequest extends FormRequest
     {
         return [
             //
-            "name" => "string|required|max:255",
+            "name" => "string|required|max:255|unique:servings",
             "stock_id" => "string|exists:stocks,id|nullable|required_if:supplies_id,null",
             "supplies_id" => "string|exists:supplies,id|nullable|required_if:stock_id,null",
             "description" => "string|nullable",

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Supplies;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSuppliesRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class UpdateSuppliesRequest extends FormRequest
     {
         return [
             //
-            "name" => 'required|string|max:255',
+            "name" => ['required', 'string', 'max:255', Rule::unique('supplies')->ignore($this->supply)],
             "description" => 'string',
         ];
     }

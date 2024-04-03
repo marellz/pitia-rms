@@ -22,11 +22,11 @@ class StoreSuppliesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => 'required|string|max:255',
+            "name" => 'required|string|max:255|unique:supplies',
             "description" => 'string|nullable',
             "units"=> 'int',
             "servings_per_unit" => 'required|int',
-            'cost_per_unit' => 'required|int',
+            "cost_per_unit" => "required|int",
 
         ];
     }

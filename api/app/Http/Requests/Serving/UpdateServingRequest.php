@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Serving;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateServingRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class UpdateServingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "string|max:255",
+            "name" => ["string", "max:255", Rule::unique('servings')->ignore($this->serving)],
             "stock_id" => "string|exists:stocks,id|nullable|required_if:supplies_id,null",
             "supplies_id" => "string|exists:supplies,id|nullable|required_if:stock_id,null",
             "description" => "string|nullable",
