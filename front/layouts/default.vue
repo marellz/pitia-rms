@@ -61,7 +61,7 @@ const links = [
   },
   {
     path: "/preps",
-    label: "Preps",
+    label: "Servings & prep",
     icon: FireIcon,
   },
   {
