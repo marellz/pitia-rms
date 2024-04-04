@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\MenuItemCategoryController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\ServingController;
@@ -18,6 +19,7 @@ Route::resources([
     'stock' => StockController::class,
     'supplies' => SuppliesController::class,
     'servings' => ServingController::class,
+    'expense-types' => ExpenseTypeController::class,
 ]);
 
 Route::group(['prefix' => 'menu-categories'], function () {

@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             MenuItemCategorySeeder::class,
             ServingSeeder::class,
             MenuItemSeeder::class,
+            ExpenseTypeSeeder::class,
         ]);
     }
 }
