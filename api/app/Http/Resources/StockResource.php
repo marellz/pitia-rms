@@ -26,7 +26,6 @@ class StockResource extends JsonResource
 
             // available
             // todo: implement units in singular/plural
-            'available' => $this->units. ' '. $this->unit_type
         ];
     }
 }

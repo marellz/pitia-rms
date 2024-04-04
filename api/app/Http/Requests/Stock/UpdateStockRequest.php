@@ -25,10 +25,7 @@ class UpdateStockRequest extends FormRequest
         return [
             'name' => ['string', Rule::unique('stocks')->ignore($this->stock)],
             'description' => 'nullable|string',
-            'units' => 'int',
             'unit_type' => 'string|nullable',
-            'servings_per_unit' => 'int',
-            'cost_per_unit' => 'int'
         ];
     }
 }

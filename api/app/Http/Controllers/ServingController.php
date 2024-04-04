@@ -7,12 +7,16 @@ use App\Http\Requests\Serving\UpdateServingQuantitiesRequest;
 use App\Http\Requests\Serving\UpdateServingRequest;
 use App\Models\Serving\Serving;
 use App\Service\ServingService;
+use App\Service\StockService;
+use App\Service\SuppliesService;
 
 class ServingController extends Controller
 {
 
     public function __construct(
         private readonly ServingService $service,
+        private readonly StockService $stockService,
+        private readonly SuppliesService $suppliesService,
     ) {
     }
     /**
@@ -31,6 +35,9 @@ class ServingController extends Controller
     public function create()
     {
         //
+        $data['stock'] = $this->stockService->all();
+        $data['supplies'] = $this->suppliesService->all();
+        return $this->respond($data);
     }
 
     /**

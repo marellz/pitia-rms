@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Stock\StoreStockRequest;
 use App\Http\Requests\Stock\UpdateStockRequest;
-use App\Http\Requests\Supplies\UpdateStockQuantitiesRequest;
+use App\Http\Requests\Stock\UpdateStockQuantitiesRequest;
 use App\Models\Stock\Stock;
 use App\Service\StockService;
 use Illuminate\Http\JsonResponse;

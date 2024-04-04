@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MenuItem\StoreMenuItemRequest;
 use App\Http\Requests\MenuItem\UpdateMenuItemRequest;
 use App\Models\Menu\MenuItem;
+use App\Service\MenuItemCategoryService;
 use App\Service\MenuItemService;
 use App\Service\ServingService;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class MenuItemController extends Controller
 
     public function __construct (
         private readonly MenuItemService $service,
-        private readonly ServingService $servingsService
+        private readonly ServingService $servingsService,
+        private readonly MenuItemCategoryService $categoryService
     )
     {
         
@@ -37,8 +39,9 @@ class MenuItemController extends Controller
     public function create()
     {
         //
+        $data['categories'] = $this->categoryService->all();
         $data['servings'] = $this->servingsService->all();
-        $this->respond($data);
+        return $this->respond($data);
     }
 
     /**

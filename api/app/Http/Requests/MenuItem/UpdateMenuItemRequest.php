@@ -24,9 +24,9 @@ class UpdateMenuItemRequest extends FormRequest
     {
         return [
             //
-            'name' => ['required','string', Rule::unique('menu_items')->ignore($this->menuItem)],
-            'menu_item_category_id' => 'required|exists:menu_item_categories,id',
-            'price' => 'required|integer|',
+            'name' => ['required','string'],
+            'menu_item_category_id' => 'nullable|string|exists:menu_item_categories,id',
+            'price' => 'integer|nullable',
             'sale_price' => 'nullable|integer',
             'image' => 'nullable|string',
             'description' => 'nullable|string',

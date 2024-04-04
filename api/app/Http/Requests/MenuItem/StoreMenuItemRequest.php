@@ -31,4 +31,11 @@ class StoreMenuItemRequest extends FormRequest
             'description' => 'nullable|string',
         ];
     }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'menu_item_category_id' => $this->category['id']
+        ]);
+    }
 }

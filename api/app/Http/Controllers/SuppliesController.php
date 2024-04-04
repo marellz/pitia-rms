@@ -23,7 +23,7 @@ class SuppliesController extends Controller
     public function index()
     {
         //
-        $data = $this->service->all();
+        $data['items'] = $this->service->all();
         return $this->respond($data);
     }
 

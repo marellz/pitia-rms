@@ -4,7 +4,7 @@ namespace App\Service;
 
 use App\Http\Requests\Stock\StoreStockRequest;
 use App\Http\Requests\Stock\UpdateStockRequest;
-use App\Http\Requests\Supplies\UpdateStockQuantitiesRequest;
+use App\Http\Requests\Stock\UpdateStockQuantitiesRequest;
 use App\Http\Resources\StockResource;
 use App\Models\Stock\Stock;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class StockService
         //
     }
 
-    public function all(Request $params)
+    public function all()
     {
         $items = Stock::all();
         return StockResource::collection($items);

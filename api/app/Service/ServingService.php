@@ -69,7 +69,7 @@ class ServingService
         if ($valid->has('type') && $valid->has('units')) {
            $update['units'] = $this->quantityService->updateUnits($valid, $serving->units);
         }
-
+        
         $updated = $serving->update($update);
 
         return $updated;

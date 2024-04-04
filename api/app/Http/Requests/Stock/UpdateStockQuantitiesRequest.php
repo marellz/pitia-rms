@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Supplies;
+namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -12,7 +12,7 @@ class UpdateStockQuantitiesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,8 +26,8 @@ class UpdateStockQuantitiesRequest extends FormRequest
             //
             "units" => "int|present_with:type",
             "type" => ["present_with:units", Rule::in(["addition", "deduction"])],
-            "servings_per_unit" => "int",
-            "cost_per_unit" => "int"
+            "servings_per_unit" => "int|required",
+            "cost_per_unit" => "int|required"
         ];
     }
 }
