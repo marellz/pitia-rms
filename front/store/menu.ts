@@ -1,5 +1,9 @@
 import { defineStore } from "pinia";
-import { type MenuItem, type MenuItemForm } from "~/types/menu";
+import {
+  type MenuItem,
+  type MenuItemForm,
+  type NewMenuItem,
+} from "~/types/menu";
 
 export const useMenuItemStore = defineStore("menu", () => {
   const { $api } = useNuxtApp();
@@ -12,22 +16,19 @@ export const useMenuItemStore = defineStore("menu", () => {
   };
 
   const get = async (id: string | string[]) => {
-    // 
+    //
     const { item }: { item: MenuItem } = await $api.get(`/menu/${id}`);
-  
+
     return item;
   };
 
-  const create = async (body: MenuItem) => {
-    const { item }: { item: MenuItem } = await $api.post(
-      `/menu/`,
-      body
-    );
+  const create = async (body: NewMenuItem) => {
+    const { item }: { item: MenuItem } = await $api.post(`/menu/`, body);
 
-    items.value.push(item)
+    items.value.push(item);
   };
 
-  const update = async (id: string | string[], body: MenuItem) => {
+  const update = async (id: string | string[], body: MenuItem | NewMenuItem) => {
     const { updated }: { updated: boolean } = await $api.put(
       `/menu/${id}`,
       body

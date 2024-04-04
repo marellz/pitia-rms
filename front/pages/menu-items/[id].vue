@@ -70,7 +70,8 @@
 import { onMounted, computed, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useMenuItemStore } from "~/store/menu";
-import { type MenuItem } from "~/types/menu";
+import type { MenuItem } from "~/types/menu";
+import { type NewMenuItem } from "~/types/menu";
 
 const route = useRoute();
 const router = useRouter();
@@ -80,7 +81,7 @@ const id = computed(() => route.params.id);
 const servings = computed(() => store.formResources.servings);
 const categories = computed(() => store.formResources.categories);
 const image = ref();
-const item = ref<MenuItem>({
+const item = ref<NewMenuItem | MenuItem>({
   name: '',
   price: 0,
   category: {
