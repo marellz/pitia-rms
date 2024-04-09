@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\MenuItemCategoryController;
 use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ServingController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SuppliesController;
@@ -19,6 +20,7 @@ Route::resources([
     'stock' => StockController::class,
     'supplies' => SuppliesController::class,
     'servings' => ServingController::class,
+    'sales' => SaleController::class,
     'expense-types' => ExpenseTypeController::class,
 ]);
 
@@ -37,4 +39,8 @@ Route::group(['prefix' => 'supplies'], function () {
 
 Route::group(['prefix' => 'servings'], function () {
     Route::put('/{id}/update-quantities', [ServingController::class, 'updateQuantities']);
+});
+
+Route::group(['prefix' => 'sales'], function () {
+    Route::put('/{id}/update-complete', [SaleController::class, 'updateComplete']);
 });
