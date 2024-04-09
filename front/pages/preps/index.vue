@@ -63,7 +63,6 @@ const editServingQuantities = (serving: ServingItem) => {
   let { id, name } = serving;
   currentServingQuantities.value = { id, name, units: 0 };
   showQuantitesFormModal.value = true;
-  console.log(currentServingQuantities.value);
 };
 
 const cancelServingQuantitesForm = () => {

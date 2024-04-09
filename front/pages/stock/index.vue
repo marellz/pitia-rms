@@ -85,7 +85,6 @@ const editStockQuanties = (stock: StockItem) => {
     units: 0,
   };
   showQuantitesFormModal.value = true;
-  console.log(currentStockQuantities.value);
 };
 
 const cancelStockQuantitesForm = () => {
