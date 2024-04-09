@@ -1,14 +1,23 @@
 <template>
   <div class="h-[100vh] flex">
-    <nav class="bg-blue text-white md:w-72 xl:w-96 flex-none py-20 flex justify-center">
+    <nav
+      class="bg-blue text-white md:w-72 xl:w-96 flex-none py-20 flex justify-center"
+    >
       <ul>
+        <li class="mb-10">
+          <nav-item :link="newOrderPath" class="!font-bold">
+            <template #icon>
+              <PlusCircleIcon class="h-8" />
+            </template>
+          </nav-item>
+        </li>
+
         <li v-for="(link, index) in links" :key="index">
-          <nuxt-link class="rounded hover:bg-white hover:text-blue px-5 py-4 flex items-center space-x-2 text-lg font-light" :to="link.path">
-            <component :is="link.icon" class="h-6"></component>
-            <span>
-              {{ link.label }}
-            </span>
-          </nuxt-link>
+          <nav-item :link="link">
+            <template #icon>
+              <component :is="link.icon" class="h-6"></component>
+            </template>
+          </nav-item>
         </li>
       </ul>
     </nav>
@@ -42,6 +51,7 @@ import {
   UserCircleIcon,
   BanknotesIcon,
   Squares2X2Icon,
+  PlusCircleIcon,
 } from "@heroicons/vue/24/outline";
 const links = [
   {
@@ -90,4 +100,9 @@ const links = [
     icon: UserCircleIcon,
   },
 ];
+
+const newOrderPath = {
+  path: "/new-order",
+  label: "New order",
+};
 </script>
