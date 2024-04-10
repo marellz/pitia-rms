@@ -57,10 +57,18 @@ class SaleController extends Controller
         return $this->respond($data);
     }
 
-    public function updateComplete(string $id)
+    public function markAsPaid(string $id)
     {
         //
-        $data['completed'] = $this->service->complete($id);
+        $data['updated'] = $this->service->markAsPaid($id);
+        return $this->respond($data);
+    }
+
+    public function markAsComplete(string $id)
+    {
+        //
+        // todo : prevent marking as complete if status is not paid?
+        $data['completed'] = $this->service->markAsComplete($id);
         return $this->respond($data);
     }
 }

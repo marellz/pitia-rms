@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import type { Sale } from "~/types/sales";
 import { useOrdersStore } from "./orders";
 import type { SaleItem } from "~/types/sales";
-import type { Order } from "~/types/orders";
 
 export const useSalesStore = defineStore("sales", () => {
   const { $api } = useNuxtApp();

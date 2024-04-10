@@ -80,11 +80,19 @@ class SaleService
 
         return $updated;
     }
-
-    public function complete(string $id)
+    
+    public function markAsPaid(string $id)
     {
         $sale = $this->get($id);
-        $completed = $sale->update(['complete' => true]);
+        $paid = $sale->update(['status'=>'paid']);
+
+        return $paid;
+    }
+
+    public function markAsComplete(string $id)
+    {
+        $sale = $this->get($id);
+        $completed = $sale->update(['complete' => true, 'status'=> 'complete']);
 
         return $completed;
     }

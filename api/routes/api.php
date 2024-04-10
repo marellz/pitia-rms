@@ -45,7 +45,8 @@ Route::group(['prefix' => 'servings'], function () {
 });
 
 Route::group(['prefix' => 'sales'], function () {
-    Route::put('/{id}/update-complete', [SaleController::class, 'updateComplete']);
+    Route::put('/{id}/update-paid', [SaleController::class, 'markAsPaid']);
+    Route::put('/{id}/update-complete', [SaleController::class, 'markAsComplete']);
 });
 
 Route::group(['prefix' => 'expenses'], function () {
