@@ -1,6 +1,6 @@
 <template>
     <layout-container>
-        <layout-title>Page title</layout-title>
+        <layout-title>Sales</layout-title>
     </layout-container>
 </template>
 <script lang="ts" setup>

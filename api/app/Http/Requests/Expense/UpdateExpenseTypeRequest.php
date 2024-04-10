@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Expenses;;
+namespace App\Http\Requests\Expense;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreExpenseTypeRequest extends FormRequest
+class UpdateExpenseTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,7 @@ class StoreExpenseTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            'name' => 'string|required|max:255|unique:expense_types',
+            'name' => ['string', 'nullable', 'max:255', Rule::unique('expense_types')->ignore($this->expenseType)],
             'description' => 'string|nullable'
         ];
     }

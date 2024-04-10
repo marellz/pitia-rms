@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Expenses\StoreExpenseTypeRequest;
-use App\Http\Requests\Expenses\UpdateExpenseTypeRequest;
-use App\Service\ExpensesService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Expense\StoreExpenseTypeRequest;
+use App\Http\Requests\Expense\UpdateExpenseTypeRequest;
+use App\Service\ExpenseService;
 
 class ExpenseTypeController extends Controller
 {
     //
 
     public function __construct(
-        private readonly ExpensesService $service
+        private readonly ExpenseService $service
     )
     {
         //    

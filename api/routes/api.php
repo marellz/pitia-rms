@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ExpensesController;
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\MenuItemCategoryController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\SaleController;
@@ -21,6 +22,7 @@ Route::resources([
     'supplies' => SuppliesController::class,
     'servings' => ServingController::class,
     'sales' => SaleController::class,
+    'expenses' => ExpenseController::class,
     'expense-types' => ExpenseTypeController::class,
 ]);
 
@@ -43,4 +45,8 @@ Route::group(['prefix' => 'servings'], function () {
 
 Route::group(['prefix' => 'sales'], function () {
     Route::put('/{id}/update-complete', [SaleController::class, 'updateComplete']);
+});
+
+Route::group(['prefix' => 'expenses'], function () {
+    Route::put('/{id}/update-settled', [ExpenseController::class, 'updateSettled']);
 });
