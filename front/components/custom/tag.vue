@@ -1,6 +1,6 @@
 <template>
   <div
-    class="inline-flex items-center space-x-2 rounded-full justify-center px-2 text-sm"
+    class="inline-flex items-center space-x-2 rounded-full justify-center px-3 py-0.5 text-sm"
     :class="color"
   >
     <slot />

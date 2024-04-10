@@ -36,6 +36,14 @@
         </table-tr>
       </template>
     </tbody>
+    <tfoot>
+      <tr>
+        <table-td class="rounded-b-lg" :colspan="fields.length">
+          <!-- todo: add pagination -->
+          <p class="text-center">Showing <span class="font-bold">{{ items.length }}</span> items</p>
+        </table-td>
+      </tr>
+    </tfoot>
   </table>
 </template>
 <script setup>
