@@ -63,6 +63,8 @@ const model = defineModel();
 onMounted(() => {
   if(props.modelValue){
     model.value = props.modelValue
+  } else {
+    model.value = ''
   }
 })
 
