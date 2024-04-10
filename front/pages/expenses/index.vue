@@ -48,6 +48,7 @@
           <table-action
             @click="settleExpense(id)"
             color="text-green-500 hover:bg-green-100"
+            :disabled="settled"
           >
             <DocumentCheckIcon class="h-4" />
             <span class="text-sm">Settled</span>
