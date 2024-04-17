@@ -1,8 +1,15 @@
 <template>
   <div class="h-[100vh] flex">
     <nav
-      class="bg-blue text-white md:w-72 xl:w-96 flex-none py-20 flex justify-center"
+      ref="nav"
+      class="bg-blue text-white max-w-[100vw] w-96 sm:w-72 xl:w-96 flex-none py-20 flex justify-center fixed h-[100vh] lg:relative transform transition lg:transform-none -translate-x-full z-40 overflow-auto"
+      :class="{ '!translate-x-0': navActive }"
     >
+      <li class="absolute top-6 right-10 list-none lg:hidden">
+        <button type="button" class="text-white" @click="navActive = false">
+          <ArrowLeftIcon class="h-10" />
+        </button>
+      </li>
       <ul>
         <li class="mb-10">
           <nav-item :link="newOrderPath" class="!font-bold">
@@ -22,8 +29,11 @@
       </ul>
     </nav>
     <div class="h-full flex flex-col flex-auto overflow-auto">
-      <header class="py-5 border-b">
-        <LayoutContainer>
+      <header class="py-5 border-b sticky top-0 bg-white">
+        <LayoutContainer class="flex items-center space-x-3">
+          <button type="button" class="text-blue lg:hidden" @click="navActive = true">
+          <Bars3Icon class="h-10" />
+        </button>
           <nuxt-link to="/" class="font-bold text-2xl"> PitiaRMS </nuxt-link>
         </LayoutContainer>
       </header>
@@ -51,8 +61,15 @@ import {
   UserCircleIcon,
   BanknotesIcon,
   Squares2X2Icon,
+  Bars3Icon,
   PlusCircleIcon,
+ArrowLeftIcon,
 } from "@heroicons/vue/24/outline";
+import { onClickOutside } from "@vueuse/core";
+import { useRoute } from "vue-router";
+
+const route = useRoute()
+// todo: on edit/[id] pages, have a way of going back to list, to cancel
 const links = [
   {
     path: "/",
@@ -105,4 +122,15 @@ const newOrderPath = {
   path: "/new-order",
   label: "New order",
 };
+
+const navActive = ref(false);
+
+const nav = ref()
+onClickOutside(nav, () => {
+  navActive.value = false
+})
+
+watch(route,()=> {
+  navActive.value = false
+}) 
 </script>

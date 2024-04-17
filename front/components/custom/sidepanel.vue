@@ -1,14 +1,14 @@
 <template>
   <div
-    class="fixed inset-0 h-full w-full invisible opacity-0 z-40"
-    :class="{ '!opacity-100 !visible': show }"
+    class="fixed inset-0 h-full w-full z-40 transform transition translate-x-full"
+    :class="{ '!translate-x-0': show }"
   >
     <div
       class="bg-black opacity-40 fixed inset-0 h-full w-full"
       @click="close"
     ></div>
     <div class="relative flex justify-end z-50 h-full">
-      <div class="bg-white w-1/2 h-full overflow-auto" :class="width">
+      <div class="bg-white w-full sm:w-2/3 lg:w-1/2 h-full overflow-auto" :class="width">
         <div v-if="title || $slots.header" class="border-b py-5 px-5 flex sticky top-0 bg-white">
             <slot name="header">
                 <div class="flex-auto">
@@ -46,7 +46,7 @@ defineProps({
   },
   width:{
     type: String,
-    default: 'max-w-[50vw]'
+    default: 'lg:max-w-[50vw]'
   }
 });
 
