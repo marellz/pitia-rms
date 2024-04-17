@@ -1,4 +1,4 @@
-FROM node:lts-alpine as build-stage
+FROM node:lts-alpine as build
 
 WORKDIR /app
 
@@ -10,7 +10,12 @@ COPY . .
 
 RUN npm run build
 
-COPY . .
+#stage 2
+FROM node:lts-alpine
+
+WORKDIR /app
+
+COPY --from=build /app/.output /app/.output
 
 EXPOSE 3000
 
