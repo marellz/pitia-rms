@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   front:
+    container_name: pitia-front
     build: 
       context: ./front
       dockerfile: Dockerfile.prod
@@ -15,6 +16,7 @@ services:
       - api
   
   api:
+    container_name: pitia-api
     build: 
       context: './api'
       dockerfile: Dockerfile
