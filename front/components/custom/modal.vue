@@ -7,8 +7,8 @@
       class="bg-black opacity-40 fixed inset-0 h-full w-full"
       @click="close"
     ></div>
-    <div class="p-20 flex justify-center relative z-50">
-      <div class="bg-white rounded-lg w-1/2" :class="width">
+    <div class="p-10 lg:p-20 flex justify-center relative z-50">
+      <div class="bg-white rounded-lg w-full md:w-auto lg:w-1/2" :class="width">
         <div v-if="title || $slots.header" class="border-b py-5 px-5 flex">
             <slot name="header">
                 <div class="flex-auto">
@@ -46,7 +46,7 @@ defineProps({
   },
   width:{
     type: String,
-    default: 'max-w-[50vw]'
+    default: 'lg:max-w-[50vw]'
   }
 });
 
