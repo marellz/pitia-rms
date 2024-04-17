@@ -1,5 +1,5 @@
 up:
-	docker-compose up
+	docker-compose up -d
 
 setup:
 	cp .env.example .env
