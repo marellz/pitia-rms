@@ -1,9 +1,9 @@
 <template>
   <div
-    class="inline-flex items-center space-x-2 mb-2 mr-2 rounded-lg p-2"
+    class="inline-flex items-center space-x-2 mb-2 mr-2 rounded-lg px-2 py-1 md:py-2"
     :class="[color]"
   >
-    <p class="text-xl">
+    <p class="md:text-xl">
       {{ item.name }}
     </p>
     <button class="border rounded" type="button" @click="remove">

@@ -1,6 +1,6 @@
 <template>
   <div class="h-[100vh] flex flex-col">
-    <header class="py-5 border-b sticky top-0">
+    <header class="py-5 border-b sticky top-0 bg-white">
       <layout-container class="flex items-center justify-center relative">
          <nuxt-link to="/" class="font-medium bg-gray-100 rounded py-2 px-5 text-blue inline-flex items-center space-x-2 text-lg absolute left-5">
           <ArrowLeftIcon class="h-6"/>

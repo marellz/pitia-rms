@@ -27,12 +27,12 @@
         <ChevronDownIcon class="h-5" />
       </button>
     </div>
-    <div class="flex items-center space-x-2">
-      <template v-if="item.created_by">
+    <div class="flex flex-col md:flex-row md:items-center space-x-2">
+      <div class="flex items-center space-x-2" v-if="item.created_by">
         <UserIcon class="h-4 text-gray-300" />
         <p>{{ item.created_by.name }}</p>
-      </template>
-      <span class="text-gray-300">|</span>
+      </div>
+      <span class="text-gray-300 hidden md:inline">|</span>
       <p>{{ item.created }}</p>
     </div>
     <template v-if="itemActive">
@@ -46,9 +46,10 @@
       </ul>
       <div class="mt-5 flex justify-end space-x-2">
         <custom-button color="secondary" @click="updateOrder"
-          >Update order</custom-button
+          >Update 
+          <span class="hidden md:inline pl-1">order</span></custom-button
         >
-        <custom-button @click="completeOrder">Complete order</custom-button>
+        <custom-button @click="completeOrder">Complete <span class="hidden md:inline pl-1">order</span></custom-button>
       </div>
     </template>
   </div>

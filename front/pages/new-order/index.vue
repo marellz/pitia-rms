@@ -2,8 +2,8 @@
   <div class="flex-auto pb-10">
     <layout-container class="flex justify-center">
       <div class="w-full lg:max-w-[450px] xl:max-w-[750px]">
-        <div class="flex items-center justify-between mb-10">
-          <layout-title class="!mb-0">New order</layout-title>
+        <div class="flex items-center justify-between mb-10 flex-wrap md:flex-nowrap">
+          <layout-title class="!mb-3 !md:mb-0">New order</layout-title>
           <button
             type="button"
             :disabled="items.length > 0"
@@ -54,7 +54,7 @@
     class="sticky py-5 bottom-0 bg-white border-t w-full overflow-auto"
     v-show="items.length || order.items.length"
   >
-    <layout-container class="flex flex-col lg:flex-row items-center">
+    <layout-container class="flex flex-col lg:flex-row lg:items-center">
       <div class="flex-auto">
         <div class="mb-2 flex items-center flex-wrap">
           <order-item-chip
@@ -77,11 +77,11 @@
           <p>Ksh. {{ store.total }}</p>
         </div>
       </div>
-      <div class="text-center py-10 lg:py-2">
+      <div class="text-end md:text-center py-5 md:py-10 lg:py-2">
         <custom-button
           v-if="order.id"
           :disabled="!items.length"
-          class="!px-10 !py-3 text-2xl disabled:opacity-50"
+          class="!md:px-10 !md:py-3 md:text-2xl disabled:opacity-50"
           @click="updateOrder"
         >
           <span>Update order</span>
@@ -90,7 +90,7 @@
         <custom-button
           v-else
           :disabled="!items.length"
-          class="!px-10 !py-3 text-2xl disabled:opacity-50"
+          class="!md:px-10 !md:py-3 md:text-2xl disabled:opacity-50"
           @click="placeOrder"
         >
           <span>Place order</span>
