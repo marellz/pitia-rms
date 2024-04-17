@@ -69,7 +69,7 @@ import { onClickOutside } from "@vueuse/core";
 import { useRoute } from "vue-router";
 
 const route = useRoute()
-
+// todo: on edit/[id] pages, have a way of going back to list, to cancel
 const links = [
   {
     path: "/",
