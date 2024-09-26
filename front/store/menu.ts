@@ -9,15 +9,20 @@ export const useMenuItemStore = defineStore("menu", () => {
   const { $api } = useNuxtApp();
   const items = ref<MenuItem[]>([]);
   const formResources = ref<MenuItemForm>({});
+  const loading = ref(false)
 
   const all = async () => {
+    loading.value = true
     const response: MenuItem[] = await $api.get(`/menu`);
     items.value = response;
+    loading.value = false
   };
 
   const get = async (id: string | string[]) => {
     //
-    const { item }: { item: MenuItem } = await $api.get(`/menu/${id}`);
+  
+    const { item, loading: l }: { item: MenuItem, loading: boolean } = await $api.get(`/menu/${id}`);
+    loading.value = l
 
     return item;
   };
@@ -46,6 +51,7 @@ export const useMenuItemStore = defineStore("menu", () => {
   };
 
   return {
+    loading,
     items,
     all,
     get,

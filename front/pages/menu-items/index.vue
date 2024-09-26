@@ -11,7 +11,8 @@
         </custom-button>
       </nuxt-link>
     </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+    <custom-loader v-if="store.loading" />
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5" v-else>
       <a
         href="#"
         @click.prevent="editItem(item.id)"
@@ -40,7 +41,7 @@ import { PlusIcon, PencilSquareIcon } from "@heroicons/vue/24/outline";
 const store = useMenuItemStore();
 const router = useRouter();
 const items = computed(() => store.items);
-onMounted(()=> store.all())
+onMounted(() => store.all());
 const editItem = (id: string) => {
   router.push(`/menu-items/${id}`);
 };

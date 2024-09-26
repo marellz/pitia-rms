@@ -1,6 +1,7 @@
 <template>
   <layout-container>
     <layout-form :title="`${isEdit ? 'Edit' : 'Add'} a menu item`">
+      <custom-loader v-if="loading"></custom-loader>
       <form @submit.prevent="submit">
         <div class="grid md:grid-cols-2 gap-5">
           <div>
@@ -80,13 +81,14 @@ const isEdit = computed(() => route.params.id !== "create");
 const id = computed(() => route.params.id);
 const servings = computed(() => store.formResources.servings);
 const categories = computed(() => store.formResources.categories);
+const loading = computed(() => store.loading);
 const image = ref();
 const item = ref<NewMenuItem | MenuItem>({
-  name: '',
+  name: "",
   price: 0,
   category: {
-    id: '',
-    name: ''
+    id: "",
+    name: "",
   },
 });
 

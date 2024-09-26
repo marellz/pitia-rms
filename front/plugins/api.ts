@@ -19,6 +19,8 @@ export default defineNuxtPlugin(() => {
     },
   });
 
+  let loading = true
+
 
   api.interceptors.request.use(
     function (config) {
@@ -33,7 +35,11 @@ export default defineNuxtPlugin(() => {
 
   api.interceptors.response.use(
     function (response) {
-      return response.data;
+      
+      if(response.data){
+        loading = false
+      }
+      return {...response.data, loading};
     },
     function (error) {
       // todo: handle errors, somwehow
